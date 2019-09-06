@@ -1,3 +1,5 @@
+// prettier-ignore
+
 /**
  * @param {number} x
  * @return {boolean}
