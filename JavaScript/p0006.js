@@ -4,7 +4,7 @@
  * @return {string}
  */
 
-var convert = function(s, numRows) {
+const convert = (s, numRows) => {
   if (!s) return "";
   let map = [];
   let cursor = 0;
