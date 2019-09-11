@@ -10,7 +10,7 @@ package leetcode
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	dummyHead := &ListNode{Val: 0, Next: nil}
-	cursol := dummyHead
+	cursor := dummyHead
 	carry := 0
 	for l1 != nil || l2 != nil || carry > 0 {
 		val1, val2 := 0, 0
@@ -21,8 +21,8 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			val2 = l2.Val
 		}
 		sum := val1 + val2 + carry
-		cursol.Next = &ListNode{Val: sum % 10, Next: nil}
-		cursol = cursol.Next
+		cursor.Next = &ListNode{Val: sum % 10, Next: nil}
+		cursor = cursor.Next
 		carry = sum / 10
 		if l1 != nil {
 			l1 = l1.Next

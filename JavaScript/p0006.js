@@ -7,13 +7,13 @@
 var convert = function(s, numRows) {
   if (!s) return "";
   let map = [];
-  let cursol = 0;
+  let cursor = 0;
   let isUp = true;
   for (let n = 0; n < s.length; n += 1) {
-    if (!map[cursol]) map[cursol] = "";
-    map[cursol] += s[n];
-    cursol = isUp ? cursol + 1 : cursol - 1;
-    if (cursol % (numRows - 1) === 0) {
+    if (!map[cursor]) map[cursor] = "";
+    map[cursor] += s[n];
+    cursor = isUp ? cursor + 1 : cursor - 1;
+    if (cursor % (numRows - 1) === 0) {
       isUp = !isUp;
     }
   }
