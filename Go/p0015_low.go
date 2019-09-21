@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func threeSum(nums []int) [][]int {
+func threeSumLow(nums []int) [][]int {
 	ns := nums
 	sort.Ints(ns)
 	answer := [][]int{}
