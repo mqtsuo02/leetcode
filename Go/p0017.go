@@ -1,6 +1,6 @@
 package leetcode
 
-var m = map[string]string{
+var phone = map[string]string{
 	"2": "abc",
 	"3": "def",
 	"4": "ghi",
@@ -11,23 +11,21 @@ var m = map[string]string{
 	"9": "wxyz",
 }
 
-var ans []string
-
-func combine(s, ds string) {
-	if len(ds) == 0 {
-		ans = append(ans, s)
-		return
+func letterCombinations(digits string) []string {
+	ansp := &[]string{}
+	if len(digits) > 0 {
+		combine("", digits, ansp)
 	}
-	as := m[ds[:1]]
-	for i := 0; i < len(as); i++ {
-		combine(s+as[i:i+1], ds[1:])
-	}
+	return *ansp
 }
 
-func letterCombinations(digits string) []string {
-	ans = []string{}
-	if len(digits) > 0 {
-		combine("", digits)
+func combine(s, ds string, ansp *[]string) {
+	if len(ds) == 0 {
+		*ansp = append(*ansp, s)
+		return
 	}
-	return ans
+	as := phone[ds[:1]]
+	for i := 0; i < len(as); i++ {
+		combine(s+as[i:i+1], ds[1:], ansp)
+	}
 }
