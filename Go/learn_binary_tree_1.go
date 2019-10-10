@@ -9,6 +9,27 @@ package leetcode
  * }
  */
 
+// preorderTraversal itaration pattern
+func preorderTraversal(root *TreeNode) []int {
+	stack, output := []*TreeNode{root}, []int{}
+	for len(stack) > 0 {
+		root = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if root != nil {
+			output = append(output, root.Val)
+			if root.Right != nil {
+				stack = append(stack, root.Right)
+			}
+			if root.Left != nil {
+				stack = append(stack, root.Left)
+			}
+		}
+	}
+	return output
+}
+
+/*
+// preorderTraversal recursice pattern
 func preorderTraversal(root *TreeNode) []int {
 	ans := []int{}
 	if root != nil {
@@ -16,6 +37,7 @@ func preorderTraversal(root *TreeNode) []int {
 	}
 	return ans
 }
+*/
 
 func recursiveForPreorderTraversal(node *TreeNode, ansp *[]int) {
 	*ansp = append(*ansp, node.Val)
@@ -27,6 +49,30 @@ func recursiveForPreorderTraversal(node *TreeNode, ansp *[]int) {
 	}
 }
 
+/*
+// inorderTraversal iteration pattern
+1. currがnilになるまでstackにaddして、Leftに移動
+2. nilだったらstackをpopしてoutputにaddしてRightに移動
+3. 1に戻る
+4. 最終的にstackがない状態でRightに移動後、currがnilの場合にfor文が終了する
+*/
+func inorderTraversal(root *TreeNode) []int {
+	curr, stack, output := root, []*TreeNode{}, []int{}
+	for curr != nil || len(stack) > 0 {
+		for curr != nil {
+			stack = append(stack, curr)
+			curr = curr.Left
+		}
+		curr = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		output = append(output, curr.Val)
+		curr = curr.Right
+	}
+	return output
+}
+
+/*
+// inorderTraversal recursice pattern
 func inorderTraversal(root *TreeNode) []int {
 	ans := []int{}
 	if root != nil {
@@ -34,6 +80,7 @@ func inorderTraversal(root *TreeNode) []int {
 	}
 	return ans
 }
+*/
 
 func recursiveForInorderTraversal(node *TreeNode, ansp *[]int) {
 	if node.Left != nil {
