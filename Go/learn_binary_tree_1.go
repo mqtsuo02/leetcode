@@ -37,7 +37,6 @@ func preorderTraversal(root *TreeNode) []int {
 	}
 	return ans
 }
-*/
 
 func recursiveForPreorderTraversal(node *TreeNode, ansp *[]int) {
 	*ansp = append(*ansp, node.Val)
@@ -48,6 +47,7 @@ func recursiveForPreorderTraversal(node *TreeNode, ansp *[]int) {
 		recursiveForPreorderTraversal(node.Right, ansp)
 	}
 }
+*/
 
 /*
 // inorderTraversal iteration pattern
@@ -80,7 +80,6 @@ func inorderTraversal(root *TreeNode) []int {
 	}
 	return ans
 }
-*/
 
 func recursiveForInorderTraversal(node *TreeNode, ansp *[]int) {
 	if node.Left != nil {
@@ -91,7 +90,35 @@ func recursiveForInorderTraversal(node *TreeNode, ansp *[]int) {
 		recursiveForInorderTraversal(node.Right, ansp)
 	}
 }
+*/
 
+// postorderTraversal iteration pattern
+func postorderTraversal(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+	stack, output := []*TreeNode{root}, []int{}
+	for len(stack) > 0 {
+		curr := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if curr.Left != nil {
+			stack = append(stack, curr.Left)
+		}
+		if curr.Right != nil {
+			stack = append(stack, curr.Right)
+		}
+		if len(output) == 0 {
+			output = append(output, curr.Val)
+			continue
+		}
+		output = append(output[0:1], output...)
+		output[0] = curr.Val
+	}
+	return output
+}
+
+/*
+// postorderTraversal recursice pattern
 func postorderTraversal(root *TreeNode) []int {
 	ans := []int{}
 	if root != nil {
@@ -109,7 +136,34 @@ func recursiveForPostorderTraversal(node *TreeNode, ansp *[]int) {
 	}
 	*ansp = append(*ansp, node.Val)
 }
+*/
 
+// levelOrder iteration pattern
+func levelOrder(root *TreeNode) [][]int {
+	if root == nil {
+		return [][]int{}
+	}
+	ts, output := []*TreeNode{root}, [][]int{}
+	for len(ts) > 0 {
+		tmpts := ts
+		ts = []*TreeNode{}
+		tmpns := []int{}
+		for _, tmpt := range tmpts {
+			tmpns = append(tmpns, tmpt.Val)
+			if tmpt.Left != nil {
+				ts = append(ts, tmpt.Left)
+			}
+			if tmpt.Right != nil {
+				ts = append(ts, tmpt.Right)
+			}
+		}
+		output = append(output, tmpns)
+	}
+	return output
+}
+
+/*
+// levelOrder recursive pattern
 func levelOrder(root *TreeNode) [][]int {
 	ans := [][]int{}
 	if root != nil {
@@ -130,3 +184,4 @@ func recursiveForLevelOrder(node *TreeNode, level int, ansp *[][]int) {
 		recursiveForLevelOrder(node.Right, level+1, ansp)
 	}
 }
+*/
