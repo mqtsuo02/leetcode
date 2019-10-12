@@ -100,3 +100,29 @@ func recursiveForHasPathSum(node *TreeNode, n, sum int, ansp *bool) {
 		recursiveForHasPathSum(node.Right, n+node.Val, sum, ansp)
 	}
 }
+
+func countUnivalSubtrees(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	count := 0
+	recursiveForCountUnivalSubtrees(root, &count)
+	return count
+}
+
+func recursiveForCountUnivalSubtrees(tn *TreeNode, c *int) bool {
+	l, r := true, true
+	if tn.Left != nil {
+		l = recursiveForCountUnivalSubtrees(tn.Left, c) && tn.Val == tn.Left.Val
+	}
+
+	if tn.Right != nil {
+		r = recursiveForCountUnivalSubtrees(tn.Right, c) && tn.Val == tn.Right.Val
+	}
+
+	if l && r {
+		*c++
+		return true
+	}
+	return false
+}
