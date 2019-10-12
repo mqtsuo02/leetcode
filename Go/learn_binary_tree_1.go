@@ -29,7 +29,7 @@ func preorderTraversal(root *TreeNode) []int {
 }
 
 /*
-// preorderTraversal recursice pattern
+// preorderTraversal recursive pattern
 func preorderTraversal(root *TreeNode) []int {
 	ans := []int{}
 	if root != nil {
@@ -72,7 +72,7 @@ func inorderTraversal(root *TreeNode) []int {
 }
 
 /*
-// inorderTraversal recursice pattern
+// inorderTraversal recursive pattern
 func inorderTraversal(root *TreeNode) []int {
 	ans := []int{}
 	if root != nil {
@@ -118,7 +118,7 @@ func postorderTraversal(root *TreeNode) []int {
 }
 
 /*
-// postorderTraversal recursice pattern
+// postorderTraversal recursive pattern
 func postorderTraversal(root *TreeNode) []int {
 	ans := []int{}
 	if root != nil {
